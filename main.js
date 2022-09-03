@@ -54,10 +54,15 @@ const displayNewsCatergory = (news)=>{
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                <h5 class="card-title">${news.title}</h5>
-                <p class="card-text">${news.details.slice(0, 200) + "..."}</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                <img src="${news}" class="img-fluid rounded-start" alt="...">
+                    <h5 class="card-title">${news.title}</h5>
+                    <p class="card-text">${news.details.slice(0, 150) + "..."}</p>
+                    <div class="d-flex m-2">
+                        <img src="${news.author.img
+                        }" class="img-fluid rounded-start img-custom" alt="...">
+                        <p class="ms-3">${news.author.name?news.author.name:"No Author"}</p>
+                        <h6 class="mx-auto">Total View: ${news.total_view
+                        }</h6>
+                    </div>
                 </div>
             </div>
             </div>

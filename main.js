@@ -8,14 +8,15 @@ const loadNews = ()=>{
 }
 //display categories
 const showCategory = (newsCategory)=>{
-    
+
     const category = document.getElementById('category');
     
     newsCategory.forEach(news=>{
         const div = document.createElement('div')
         div.innerHTML = `
         <ul>
-            <li onclick="loadNewsCategory('${news.category_id}')"><a href="#">${news.category_name}</a></li>
+            <li onclick="loadNewsCategory('${news.category_id}')"><a href="#">${news.category_name}</a>
+            </li>
         </ul>
         `;
         category.appendChild(div);
@@ -23,16 +24,24 @@ const showCategory = (newsCategory)=>{
 }
 // laod all news by categories
 const loadNewsCategory = (category_id)=>{
+    // start loader
+    toggleSpinner(true)
     const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`
     fetch(url)
         .then(res=>res.json())
         .then(data=>displayNewsCatergory(data.data.sort((a, b)=> b.total_view - a.total_view)))
-    //start spinner
-    toggleSpinner(true);
+        .catch(error=>console.log(error))
 }
 
 // display all news when click categories
 const displayNewsCatergory = (news)=>{
+    
+    // display news element
+    const newsElement = document.getElementById('newsNumber');
+    newsElement.innerHTML=`
+        <h5>${news.length? news.length: 'No'} News found</h5>
+    `;
+
     const categoryDetails = document.getElementById('category-details');
     //remove previes li list automatically.
     categoryDetails.innerHTML = ``;
@@ -47,7 +56,7 @@ const displayNewsCatergory = (news)=>{
 
     // apply loop to get data from api.
     news.forEach(news=>{
-        
+         
         const div = document.createElement('div');
         div.innerHTML = `
             <div class="card sm-12 md-6 mb-3">
@@ -88,6 +97,7 @@ const loadNewsDetails=(news_id)=>{
  fetch(url)
     .then(res=>res.json())
     .then(data=>displayNewsDetails(data.data))
+    .catch(error=>console.log(error))
 }
 
 //display news details by ID

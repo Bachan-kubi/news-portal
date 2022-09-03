@@ -7,8 +7,9 @@ const loadNews = ()=>{
 }
 //display categories
 const showCategory = (newsCategory)=>{
+    
     const category = document.getElementById('category');
-
+    
     newsCategory.forEach(news=>{
         const div = document.createElement('div')
         div.innerHTML = `
@@ -25,11 +26,12 @@ const loadNewsCategory = (category_id)=>{
     fetch(url)
         .then(res=>res.json())
         .then(data=>displayNewsCatergory(data.data.sort((a, b)=> b.total_view - a.total_view)))
+    //start spinner
+    toggleSpinner(true);
 }
 
 // display all news when click categories
 const displayNewsCatergory = (news)=>{
-    
     const categoryDetails = document.getElementById('category-details');
     //remove previes li list automatically.
     categoryDetails.innerHTML = ``;
@@ -74,6 +76,8 @@ const displayNewsCatergory = (news)=>{
         `;
         categoryDetails.appendChild(div)
     });
+    // stop loader
+    toggleSpinner(false);
 }
 
 // load news details from api link
@@ -84,14 +88,28 @@ const loadNewsDetails=(news_id)=>{
     .then(res=>res.json())
     .then(data=>displayNewsDetails(data.data))
 }
-const displayContainer = document.getElementById('exampleModalLabel')
+
+//display news details by ID
+const displayContainer = document.getElementById('exampleModalLabel');
+const newsDetails = document.getElementById('news-details');
 const displayNewsDetails = (news)=>{
     news.forEach(news=>{
-        displayContainer.innerText=`${news.details}`
-    })
+        displayContainer.innerText=`${news.author.name? news.author.name: 'no author'}`;
+        newsDetails.innerText= `${news.details}`;
+    });
 }
 
+// spinner or loader function
+const toggleSpinner = isLoading=>{
+    const loaderSection = document.getElementById('loader');
+    if(isLoading){
+      loaderSection.classList.remove('d-none');
+    } else{
+      loaderSection.classList.add('d-none');
+    }
+  }
 
-// loadNewsDetails();
+
+
 
 loadNews();

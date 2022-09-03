@@ -4,6 +4,7 @@ const loadNews = ()=>{
     fetch(url)
         .then(res=>res.json())
         .then(data=>showCategory(data.data.news_category))
+        .catch(error=>console.log(error))
 }
 //display categories
 const showCategory = (newsCategory)=>{

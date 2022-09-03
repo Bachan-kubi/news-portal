@@ -58,7 +58,7 @@ const displayNewsCatergory = (news)=>{
                     <p class="card-text">${news.details.slice(0, 150) + "..."}</p>
                     <div class="d-flex m-2">
                         <img src="${news.author.img
-                        }" class="img-fluid rounded-start img-custom" alt="...">
+                        }" class="img-fluid rounded-start img-custom p-1" alt="...">
                         <p class="ms-3">${news.author.name?news.author.name:"No Author"}</p>
                         <h6 class="mx-auto">Total View: ${news.total_view
                         }</h6>
@@ -81,9 +81,14 @@ const loadNewsDetails=(news_id)=>{
  const url = `https://openapi.programming-hero.com/api/news/${news_id}`
  fetch(url)
     .then(res=>res.json())
-    .then(data=>console.log(data.data))
+    .then(data=>displayNewsDetails(data.data))
 }
 
+const displayNewsDetails = (news)=>{
+    news.forEach(news=>{
+        console.log(news)
+    })
+}
 
 
 // loadNewsDetails();

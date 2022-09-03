@@ -62,6 +62,8 @@ const displayNewsCatergory = (news)=>{
                         <p class="ms-3">${news.author.name?news.author.name:"No Author"}</p>
                         <h6 class="mx-auto">Total View: ${news.total_view
                         }</h6>
+                        <button onclick="loadNewsDetails('${_id
+                        }')" class="btn btn-primary">Details</button>
                     </div>
                 </div>
             </div>
@@ -72,8 +74,14 @@ const displayNewsCatergory = (news)=>{
     });
 }
 
+// load news details from api link
 
-
+const loadNewsDetails=(news_id)=>{
+ const url = `https://openapi.programming-hero.com/api/news/${news_id}`
+ fetch(url)
+    .then(res=>res.json())
+    .then(data.data)
+}
 
 
 loadNews();

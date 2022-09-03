@@ -64,7 +64,8 @@ const displayNewsCatergory = (news)=>{
                         }</h6>
                         <button onclick="loadNewsDetails('${news._id
 
-                        }')" class="btn btn-primary">Details</button>
+                        }')" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">Details</button>
                     </div>
                 </div>
             </div>

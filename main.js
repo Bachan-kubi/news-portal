@@ -84,10 +84,10 @@ const loadNewsDetails=(news_id)=>{
     .then(res=>res.json())
     .then(data=>displayNewsDetails(data.data))
 }
-
+const displayContainer = document.getElementById('exampleModalLabel')
 const displayNewsDetails = (news)=>{
     news.forEach(news=>{
-        console.log(news)
+        displayContainer.innerText=`${news.details}`
     })
 }
 

@@ -15,7 +15,7 @@ const showCategory = (newsCategory)=>{
         const div = document.createElement('div')
         div.innerHTML = `
         <ul>
-            <li onclick="loadNewsCategory('${news.category_id}')"><a href="#" onclick="toggleSpinner(true)">${news.category_name}</a>
+            <li><a href="#" onclick="loadNewsCategory('${news.category_id}'); toggleSpinner(true)">${news.category_name}</a>
             </li>
         </ul>
         `;

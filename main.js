@@ -21,8 +21,6 @@ const showCategory = (newsCategory)=>{
         `;
         category.appendChild(div);
     });
-    // start loader
-    // toggleSpinner(true)
 }
 // laod all news by categories
 const loadNewsCategory = (category_id)=>{
@@ -40,7 +38,7 @@ const displayNewsCatergory = (news)=>{
     // display news element
     const newsElement = document.getElementById('newsNumber');
     newsElement.innerHTML=`
-        <h5>${news.length? news.length: 'No'} News found</h5>
+        <h5>${news.length? news.length: 'No'} News found in the Category</h5>
     `;
 
     const categoryDetails = document.getElementById('category-details');
@@ -85,7 +83,7 @@ const displayNewsCatergory = (news)=>{
             </div>
         </div>
         `;
-        categoryDetails.appendChild(div)
+        categoryDetails.appendChild(div);
     });
     // stop loader
     toggleSpinner(false);

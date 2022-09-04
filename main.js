@@ -15,17 +15,18 @@ const showCategory = (newsCategory)=>{
         const div = document.createElement('div')
         div.innerHTML = `
         <ul>
-            <li onclick="loadNewsCategory('${news.category_id}')"><a href="#">${news.category_name}</a>
+            <li onclick="loadNewsCategory('${news.category_id}')"><a href="#" onclick="toggleSpinner(true)">${news.category_name}</a>
             </li>
         </ul>
         `;
         category.appendChild(div);
     });
+    // start loader
+    // toggleSpinner(true)
 }
 // laod all news by categories
 const loadNewsCategory = (category_id)=>{
-    // start loader
-    toggleSpinner(true)
+    
     const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`
     fetch(url)
         .then(res=>res.json())
@@ -102,10 +103,12 @@ const loadNewsDetails=(news_id)=>{
 
 //display news details by ID
 const displayContainer = document.getElementById('exampleModalLabel');
+const views = document.getElementById('views');
 const newsDetails = document.getElementById('news-details');
 const displayNewsDetails = (news)=>{
     news.forEach(news=>{
-        displayContainer.innerText=`${news.author.name? news.author.name: 'no author'}`;
+        displayContainer.innerText=`Author: ${news.author? news.author.name: 'no author'}`;
+        views.innerText = `Total View: ${news.total_view?news.total_view:'no data'}`
         newsDetails.innerText= `${news.details}`;
     });
 }

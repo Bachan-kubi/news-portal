@@ -71,8 +71,7 @@ const displayNewsCatergory = (news)=>{
                         <img src="${news.author.img
                         }" class="img-fluid rounded-start img-custom p-1" alt="...">
                         <p class="ms-3">${news.author.name?news.author.name:"No Author"}</p>
-                        <h6 class="mx-auto">Total View: ${news.total_view
-                        }</h6>
+                        <h6 class="mx-auto">Total View: ${news.total_view? news.total_view: 'no data'}</h6>
                         <button onclick="loadNewsDetails('${news._id
 
                         }')" class="btn btn-primary" data-bs-toggle="modal"
